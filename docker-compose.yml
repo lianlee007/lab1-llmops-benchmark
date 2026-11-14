@@ -1,0 +1,18 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama-local-lab
+    ports:
+      - "11434:11434"
+    volumes:
+      # Volumen Docker (ext4 dentro del VM) en lugar de bind mount de Windows:
+      # evita page-faults lentos al hacer mmap de los pesos GGUF durante la inferencia.
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_MAX_LOADED_MODELS=1
+      - OLLAMA_KEEP_ALIVE=5m
+      - OLLAMA_NUM_PARALLEL=1
+    restart: unless-stopped
+
+volumes:
+  ollama_data:

@@ -1,0 +1,13 @@
+# Entorno virtual de Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Pesos y datos locales de Ollama (se regeneran con docker compose + ollama pull)
+ollama_data/
+
+# Sistema operativo / editores
+.DS_Store
+Thumbs.db
